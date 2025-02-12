@@ -1,6 +1,7 @@
 "use client"
 import Image from "next/image"
 import { motion } from "framer-motion"
+import Head from 'next/head';
 import {
   FaGithub,
   FaLinkedin,
@@ -112,6 +113,10 @@ const ProjectCard = ({ title, description, technologies, link }) => (
 
 const Home = () => {
   return (
+    <>
+    <Head>
+    <title>Johnny Hsieh</title>
+    </Head>
     <main className="min-h-screen bg-gray-900 text-white">
       <BackgroundPaths />
       <Navbar />
@@ -388,8 +393,9 @@ postings and employers can easily submit them. "
         </div>
       </footer>
     </main>
+    </>
+  
   )
 }
-
 export default Home
 
