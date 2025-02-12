@@ -16,6 +16,7 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
+  assetPrefix: process.env.NODE_ENV === 'production' ? '/Portfolio' : '',
   experimental: {
     webpackBuildWorker: true,
     parallelServerBuildTraces: true,
@@ -23,7 +24,7 @@ const nextConfig = {
   },
   output: 'export',
   trailingSlash: true,  
-  basePath: '/Portfolio', // Replace with the actual name of your repository
+  basePath: process.env.NODE_ENV === 'production' ? '/Portfolio' : '',
 };
 
 // Merge user config if available
