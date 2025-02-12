@@ -1,6 +1,6 @@
-let userConfig = undefined
+let userConfig = undefined;
 try {
-  userConfig = await import('./v0-user-next.config')
+  userConfig = require('./v0-user-next.config'); // CommonJS style
 } catch (e) {
   // ignore error
 }
@@ -21,15 +21,16 @@ const nextConfig = {
     parallelServerBuildTraces: true,
     parallelServerCompiles: true,
   },
+  exportTrailingSlash: true,
+  basePath: '/Portfolio', // Replace with the actual name of your repository
+};
+
+// Merge user config if available
+if (userConfig) {
+  mergeConfig(nextConfig, userConfig);
 }
 
-mergeConfig(nextConfig, userConfig)
-
 function mergeConfig(nextConfig, userConfig) {
-  if (!userConfig) {
-    return
-  }
-
   for (const key in userConfig) {
     if (
       typeof nextConfig[key] === 'object' &&
@@ -38,11 +39,11 @@ function mergeConfig(nextConfig, userConfig) {
       nextConfig[key] = {
         ...nextConfig[key],
         ...userConfig[key],
-      }
+      };
     } else {
-      nextConfig[key] = userConfig[key]
+      nextConfig[key] = userConfig[key];
     }
   }
 }
 
-export default nextConfig
+module.exports = nextConfig; // CommonJS export
