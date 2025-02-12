@@ -21,7 +21,8 @@ const nextConfig = {
     parallelServerBuildTraces: true,
     parallelServerCompiles: true,
   },
-  exportTrailingSlash: true,
+  output: 'export',
+  trailingSlash: true,  
   basePath: '/Portfolio', // Replace with the actual name of your repository
 };
 
