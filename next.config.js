@@ -21,7 +21,8 @@ const nextConfig = {
     parallelServerBuildTraces: true,
     parallelServerCompiles: true,
   },
-  trailingSlash: true,  
+  trailingSlash: true,
+  output: 'export',  
   
 };
 
