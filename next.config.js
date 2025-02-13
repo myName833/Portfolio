@@ -1,8 +1,8 @@
 let userConfig = undefined;
 try {
-  userConfig = require('./v0-user-next.config'); // CommonJS style
+  userConfig = require("./v0-user-next.config"); // CommonJS style
 } catch (e) {
-  // ignore error
+  // Ignore error
 }
 
 /** @type {import('next').NextConfig} */
@@ -22,19 +22,14 @@ const nextConfig = {
     parallelServerCompiles: true,
   },
   trailingSlash: true,
-  output: 'export',  
-  
+  output: "export",
 };
 
-// Merge user config if available
-if (userConfig) {
-  mergeConfig(nextConfig, userConfig);
-}
-
+// Function to merge user config if available
 function mergeConfig(nextConfig, userConfig) {
   for (const key in userConfig) {
     if (
-      typeof nextConfig[key] === 'object' &&
+      typeof nextConfig[key] === "object" &&
       !Array.isArray(nextConfig[key])
     ) {
       nextConfig[key] = {
@@ -45,6 +40,11 @@ function mergeConfig(nextConfig, userConfig) {
       nextConfig[key] = userConfig[key];
     }
   }
+}
+
+// Merge user config
+if (userConfig) {
+  mergeConfig(nextConfig, userConfig);
 }
 
 module.exports = nextConfig; // CommonJS export
