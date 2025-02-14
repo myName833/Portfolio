@@ -9,6 +9,7 @@ import {
   FaHtml5,
   FaCss3Alt,
   FaJs,
+  FaNodeJs,
   FaReact,
   FaAward,
   FaGraduationCap,
@@ -304,14 +305,12 @@ const Home = () => {
         description="Winner of Congressional App Challenge 24-25. An app featuring a AI chatbot and grade trend analyzer with bilingual support."
         technologies={["React", "Python", "Llama API", "Data Visualization","MongoDB","Express.js","Node.js"]}
         link="https://github.com/myName833/congressapp24"
-        image="lockedin.png"
       />
       <ProjectCard
         title="DB Hackathon Club Website"
         description="Designed and developed the website for the school's Hackathon club, featuring event registration and resource sharing."
         technologies={["React", "Vite.js", "Tailwind CSS"]}
         link="https://dbhackathonclub.onrender.com/"
-        image="hackathon.png"
       />
       <ProjectCard
         title="WPrime Sports Website"
@@ -321,11 +320,15 @@ const Home = () => {
       />
       <ProjectCard
         title="EmployHub"
-        description="Created an interactive platform to help school’s guidance department so students can easily search job
-postings and employers can easily submit them. "
+        description="Created an interactive platform to help school’s guidance department so students can easily search job postings and employers can easily submit them. "
         technologies={["React.js", "Vite.js", "Flask", "Python","SQL"]}
         link="#"
-        image=""
+      />
+      <ProjectCard
+        title="Silver Tech"
+        description="Developed a website for a non-profit organization dedicated to helping elderly individuals navigate technology with confidence.  "
+        technologies={["React.js", "Next.js", "TypeScript", "Tailwind CSS"]}
+        link="#"
       />
     </div>
   </div>
