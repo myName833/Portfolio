@@ -15,42 +15,9 @@ import {
   FaGraduationCap,
   FaLanguage,
 } from "react-icons/fa"
-import { SiCplusplus, SiTailwindcss, SiNextdotjs,} from "react-icons/si"
+import { SiCplusplus, SiTailwindcss, SiNextdotjs } from "react-icons/si"
 import { MdEmail, MdWork, MdCode } from "react-icons/md"
 import BackgroundPaths from "../components/BackgroundPaths"
-
-const Navbar = () => {
-  return (
-    <motion.nav
-      className="fixed top-0 left-0 right-0 z-50 bg-gray-800 bg-opacity-90 backdrop-blur-sm"
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.5 }}
-    >
-      <div className="container mx-auto px-6 py-4 flex justify-between items-center">
-        <div className="flex items-center">
-          <Image src="/logo.svg" alt="JH Logo" width={40} height={40} className="mr-2" />
-          <motion.a href="#" className="text-2xl font-bold" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-            Johnny Hsieh
-          </motion.a>
-        </div>
-        <div className="space-x-4">
-          {["About", "Skills", "Education", "Experience", "Projects", "Achievements", "Contact"].map((item) => (
-            <motion.a
-              key={item}
-              href={`#${item.toLowerCase()}`}
-              className="hover:text-blue-400 transition-colors"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              {item}
-            </motion.a>
-          ))}
-        </div>
-      </div>
-    </motion.nav>
-  )
-}
 
 const SkillItem = ({ icon, name, level }) => (
   <motion.div
@@ -105,7 +72,7 @@ const ProjectCard = ({ title, description, technologies, link }) => (
           </span>
         ))}
       </div>
-      <a href={link} target="_blank" className="text-blue-400 hover:underline">
+      <a href={link} target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">
         View Project
       </a>
     </div>
@@ -113,292 +80,435 @@ const ProjectCard = ({ title, description, technologies, link }) => (
 )
 
 const Home = () => {
+  const scrollToSection = (sectionId) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const Navbar = () => {
+    return (
+      <motion.nav
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="fixed top-0 w-full z-50 bg-gray-800/95 backdrop-blur-sm shadow-lg"
+      >
+        <div className="container mx-auto px-6 py-4 flex justify-between items-center">
+          <div className="flex items-center">
+            <Image src="/logo.svg" alt="JH Logo" width={40} height={40} className="mr-2" />
+            <motion.a
+              onClick={() => scrollToSection('hero')}
+              className="text-2xl font-bold cursor-pointer"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Johnny Hsieh
+            </motion.a>
+          </div>
+          <div className="space-x-4">
+            {["About", "Skills", "Education", "Experience", "Projects", "Achievements", "Contact"].map((item) => (
+              <motion.a
+                key={item}
+                onClick={() => scrollToSection(item.toLowerCase())}
+                className="hover:text-blue-400 transition-colors cursor-pointer"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                {item}
+              </motion.a>
+            ))}
+          </div>
+        </div>
+      </motion.nav>
+    )
+  }
+
   return (
     <>
-    <Head>
-    <title>Johnny Hsieh</title>
-    </Head>
-    <main className="min-h-screen bg-gray-900 text-white">
-      <BackgroundPaths />
-      <Navbar />
+      <Head>
+        <title>Johnny Hsieh</title>
+      </Head>
+      <main className="min-h-screen bg-gray-900 text-white">
+        <BackgroundPaths />
+        <Navbar />
 
-      <section id="hero" className="h-screen flex items-center justify-center bg-gray-800">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+        <motion.section
+          id="hero"
+          className="h-screen flex items-center justify-center bg-gray-800 pt-16"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
           transition={{ duration: 0.8 }}
-          className="text-center"
         >
-          <Image
-            src="johnny.jpg"
-            alt="Johnny Hsieh"
-            width={200}
-            height={200}
-            className="rounded-full mx-auto mb-8"
-          />
-          <h1 className="text-5xl font-bold mb-4">Johnny Hsieh</h1>
-          <p className="text-xl text-gray-300 mb-8">
-            High School Student | Programmer | Web Developer | Bilingual (Chinese/English)
-          </p>
           <motion.div
-            className="flex justify-center space-x-4"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.5, duration: 0.5 }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-center"
           >
-            <a
-              href="https://github.com/myName833"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-3xl hover:text-blue-400 transition-colors"
+            <Image
+              src="johnny.jpg"
+              alt="Johnny Hsieh"
+              width={200}
+              height={200}
+              className="rounded-full mx-auto mb-8"
+            />
+            <h1 className="text-5xl font-bold mb-4">Johnny Hsieh</h1>
+            <p className="text-xl text-gray-300 mb-8">
+              High School Student | Programmer | Web Developer | Bilingual (Chinese/English)
+            </p>
+            <motion.div
+              className="flex justify-center space-x-4"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.5, duration: 0.5 }}
             >
-              <FaGithub />
-            </a>
-            <a
-              href="https://www.linkedin.com/in/johnny-hsieh-97aa5b329/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-3xl hover:text-blue-400 transition-colors"
-            >
-              <FaLinkedin />
-            </a>
-            <a href="mailto:Johnnyhsieh02@gmail.com" className="text-3xl hover:text-blue-400 transition-colors">
-              <MdEmail />
-            </a>
+              <a
+                href="https://github.com/myName833"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-3xl hover:text-blue-400 transition-colors"
+              >
+                <FaGithub />
+              </a>
+              <a
+                href="https://www.linkedin.com/in/johnny-hsieh-97aa5b329/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-3xl hover:text-blue-400 transition-colors"
+              >
+                <FaLinkedin />
+              </a>
+              <a
+                href="mailto:Johnnyhsieh02@gmail.com"
+                className="text-3xl hover:text-blue-400 transition-colors"
+              >
+                <MdEmail />
+              </a>
+            </motion.div>
           </motion.div>
-        </motion.div>
-      </section>
+        </motion.section>
 
-      <section id="about" className="py-20 bg-gray-800">
-        <div className="container mx-auto px-6">
-          <h2 className="text-3xl font-bold mb-8">About Me</h2>
-          <p className="text-lg text-gray-300 leading-relaxed">
-            I am a motivated high school student passionate about programming and web development, with hands-on
-            experience in building websites and a strong foundation in frontend development, Python, and C++. I aim to
-            further develop my skills and contribute to innovative projects. As the winner of the Congressional App
-            Challenge 24-25, I led the creation of Lockedin, an app featuring a chatbot and grade trend analyzer,
-            showcasing my ability to develop practical and impactful solutions. Being bilingual in Chinese and English,
-            I bring a multicultural perspective to my work and can effectively communicate with diverse teams.
-          </p>
-          <div className="mt-8 flex flex-wrap gap-4">
-            <div className="flex items-center">
-              <FaAward className="text-blue-400 mr-2" />
-              <span>Congressional App Challenge Winner</span>
+        <motion.section
+          id="about"
+          className="py-20 bg-gray-800"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6 }}
+        >
+          <div className="container mx-auto px-6">
+            <h2 className="text-3xl font-bold mb-8">About Me</h2>
+            <p className="text-lg text-gray-300 leading-relaxed">
+              I am a motivated high school student passionate about programming and web development, with hands-on
+              experience in building websites and a strong foundation in frontend development, Python, and C++. I aim to
+              further develop my skills and contribute to innovative projects. As the winner of the Congressional App
+              Challenge 24-25, I led the creation of Lockedin, an app featuring a chatbot and grade trend analyzer,
+              showcasing my ability to develop practical and impactful solutions. Being bilingual in Chinese and English,
+              I bring a multicultural perspective to my work and can effectively communicate with diverse teams.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-4">
+              <div className="flex items-center">
+                <FaAward className="text-blue-400 mr-2" />
+                <span>Congressional App Challenge Winner</span>
+              </div>
+              <div className="flex items-center">
+                <MdWork className="text-blue-400 mr-2" />
+                <span>Web Development Intern</span>
+              </div>
+              <div className="flex items-center">
+                <MdCode className="text-blue-400 mr-2" />
+                <span>Web Developer</span>
+              </div>
+              <div className="flex items-center">
+                <FaGraduationCap className="text-blue-400 mr-2" />
+                <span>High School Senior</span>
+              </div>
+              <div className="flex items-center">
+                <FaLanguage className="text-blue-400 mr-2" />
+                <span>Bilingual (Chinese/English)</span>
+              </div>
             </div>
-            <div className="flex items-center">
-              <MdWork className="text-blue-400 mr-2" />
-              <span>Web Development Intern</span>
+          </div>
+        </motion.section>
+
+        <motion.section
+          id="skills"
+          className="py-20"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6 }}
+        >
+          <div className="container mx-auto px-6">
+            <h2 className="text-3xl font-bold mb-8">Skills</h2>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+              <SkillItem icon={<FaPython />} name="Python" level={60} />
+              <SkillItem icon={<SiCplusplus />} name="C++" level={60} />
+              <SkillItem icon={<FaHtml5 />} name="HTML" level={100} />
+              <SkillItem icon={<FaCss3Alt />} name="CSS" level={95} />
+              <SkillItem icon={<FaJs />} name="JavaScript" level={95} />
+              <SkillItem icon={<FaReact />} name="React.js" level={90} />
+              <SkillItem icon={<SiNextdotjs />} name="Next.js" level={60} />
+              <SkillItem icon={<SiTailwindcss />} name="Tailwind CSS" level={90} />
             </div>
-            <div className="flex items-center">
-              <MdCode className="text-blue-400 mr-2" />
-              <span>Web Developer</span>
+          </div>
+        </motion.section>
+
+        <motion.section
+          id="education"
+          className="py-20 bg-gray-800"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6 }}
+        >
+          <div className="container mx-auto px-6">
+            <h2 className="text-3xl font-bold mb-8">Education</h2>
+            <div className="bg-gray-700 rounded-lg p-6">
+              <h3 className="text-xl font-bold mb-2">Diamond Bar High School</h3>
+              <p className="text-blue-400 mb-2">High School Diploma (Expected 2026)</p>
+              <ul className="list-disc list-inside text-gray-300">
+                <li>President of Hackathon Club</li>
+                <li>Web Developer at Play Maker</li>
+                <li>Web Developer at Silver Tech</li>
+              </ul>
             </div>
-            <div className="flex items-center">
-              <FaGraduationCap className="text-blue-400 mr-2" />
-              <span>High School Senior</span>
+          </div>
+        </motion.section>
+
+        <motion.section
+          id="experience"
+          className="py-20"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6 }}
+        >
+          <div className="container mx-auto px-6">
+            <h2 className="text-3xl font-bold mb-8">Experience</h2>
+            <div className="space-y-8">
+              <ExperienceItem
+                title="DB Hackathon Club"
+                company="Diamond Bar High School"
+                position="President/Founder"
+                date="July 2024 - May 2026"
+                description={[
+                  "Organized school's largest Hackathon with over 200 participants",
+                  "Contributed to the design and development of the club website",
+                  "Led workshops on various technologies including Python, JavaScript, and React",
+                  "Utilized bilingual skills to engage with a diverse group of participants and sponsors",
+                ]}
+              />
+              <ExperienceItem
+                title="WPrime Sports"
+                company="WPrime Sports"
+                position="Web Development Intern"
+                date="Oct 2024 - Present"
+                description={[
+                  "Designed and developed the company's responsive website using React and Next.js",
+                  "Implemented SEO best practices, improving site visibility by 40%",
+                  "Collaborated with the marketing team to create an intuitive user interface",
+                  "Led a team of four web engineers during my internship, managing project milestones and ensuring timely delivery",
+                  "Optimized website performance, reducing load time by 30%",
+                  "Assisted in creating bilingual content for the website, expanding the company's reach",
+                ]}
+              />
+              <ExperienceItem
+                title="Silver Tech"
+                company="Silver Tech"
+                position="Web Developer"
+                date="Jan 2025 - Present"
+                description={[
+                  "Built and deployed a responsive website for a non-profit organization using React and Next.js, enhancing its digital presence.",
+                  "Integrated SEO strategies that boosted search rankings and increased visitor traffic.",
+                  "Worked closely with non-profit leaders to design a user-friendly interface tailored to their audience.",
+                  "Managed a team of volunteer developers, delegating tasks and overseeing progress to meet deadlines.",
+                  "Optimized backend and frontend performance, significantly reducing page load times.",
+                  "Developed bilingual content to make the website accessible to a broader community and improve engagement.",
+                ]}
+              />
+              <ExperienceItem
+                title="Play Maker"
+                company="Play Maker"
+                position="Web Developer"
+                date="Jan 2025 - Present"
+                description={[
+                  "Designed and developed a fully responsive website for a non-profit organization using React and Next.js.",
+                  "Implemented SEO best practices, increasing online visibility and engagement.",
+                  "Collaborated with stakeholders to create an intuitive and accessible user experience.",
+                  "Led a team of volunteer developers, ensuring project milestones were met efficiently.",
+                  "Optimized website performance, reducing load time and improving responsiveness.",
+                  "Assisted in creating multilingual content, expanding the organization's outreach."
+                ]}
+              />
+              <ExperienceItem
+                title="A+ Youth Tutors"
+                company="A+ Youth Tutors"
+                position="Regional Leader"
+                date="Jan 2025 - Present"
+                description={[
+                  "Led a team of 15 tutors, providing guidance and support",
+                  "Developed a scheduling system that increased tutor efficiency by 25%",
+                  "Tutored over 50 students in Computer Science and Math",
+                  "Implemented a feedback system, improving overall student satisfaction by 35%",
+                  "Conducted bilingual tutoring sessions, catering to both English and Chinese-speaking students",
+                ]}
+              />
+              <ExperienceItem
+                title="Sunflower Youth Foundation"
+                company="Sunflower Youth Foundation"
+                position="Cultural Exchange Officer"
+                date="Jun 2024 - Present"
+                description={[
+                  "Organized cultural exchange events for over 50 international students",
+                  "Developed and maintained the foundation's website",
+                  "Created a language exchange program, pairing native speakers with learners",
+                  "Increased participation in foundation events by 50% through targeted outreach",
+                  "Facilitated communication between Chinese and English-speaking participants",
+                ]}
+              />
             </div>
-            <div className="flex items-center">
-              <FaLanguage className="text-blue-400 mr-2" />
-              <span>Bilingual (Chinese/English)</span>
+          </div>
+        </motion.section>
+
+        <motion.section
+          id="projects"
+          className="py-20 bg-gray-800"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6 }}
+        >
+          <div className="container mx-auto px-6">
+            <h2 className="text-3xl font-bold mb-8">Projects</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <ProjectCard
+                title="Lockedin"
+                description="Winner of Congressional App Challenge 24-25. An app featuring a AI chatbot and grade trend analyzer with bilingual support."
+                technologies={["React", "Python", "Llama API", "Data Visualization", "MongoDB", "Express.js", "Node.js"]}
+                link="https://github.com/myName833/congressapp24"
+              />
+              <ProjectCard
+                title="DB Hackathon Club Website"
+                description="Designed and developed the website for the school's Hackathon club, featuring event registration and resource sharing."
+                technologies={["React", "Vite.js", "Tailwind CSS"]}
+                link="https://dbhackathonclub.onrender.com/"
+              />
+              <ProjectCard
+                title="WPrime Sports Website"
+                description="Developed the company website during internship, improving online presence and implementing e-commerce features."
+                technologies={["React", "Vite.js", "Tailwind CSS"]}
+                link="#"
+              />
+              <ProjectCard
+                title="EmployHub"
+                description="Created an interactive platform to help school's guidance department so students can easily search job postings and employers can easily submit them."
+                technologies={["React.js", "Vite.js", "Flask", "Python", "SQL"]}
+                link="#"
+              />
+              <ProjectCard
+                title="Silver Tech"
+                description="Developed a website for a non-profit organization dedicated to helping elderly individuals navigate technology with confidence."
+                technologies={["React.js", "Next.js", "TypeScript", "Tailwind CSS"]}
+                link="#"
+              />
             </div>
           </div>
-        </div>
-      </section>
+        </motion.section>
 
-      <section id="skills" className="py-20">
-        <div className="container mx-auto px-6">
-          <h2 className="text-3xl font-bold mb-8">Skills</h2>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            <SkillItem icon={<FaPython />} name="Python" level={60} />
-            <SkillItem icon={<SiCplusplus />} name="C++" level={60} />
-            <SkillItem icon={<FaHtml5 />} name="HTML" level={100} />
-            <SkillItem icon={<FaCss3Alt />} name="CSS" level={95} />
-            <SkillItem icon={<FaJs />} name="JavaScript" level={95} />
-            <SkillItem icon={<FaReact />} name="React.js" level={90} />
-            <SkillItem icon={<SiNextdotjs />} name="Next.js" level={60} />
-            <SkillItem icon={<SiTailwindcss />} name="Tailwind CSS" level={90} />
+        <motion.section
+          id="achievements"
+          className="py-20"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6 }}
+        >
+          <div className="container mx-auto px-6">
+            <h2 className="text-3xl font-bold mb-8">Achievements</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <motion.div
+                className="bg-gray-700 rounded-lg p-6"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <h3 className="text-xl font-bold mb-2">Congressional App Challenge Winner 24-25</h3>
+                <p className="text-gray-300">
+                  Led the development of Lockedin, an innovative bilingual app featuring a chatbot and grade trend
+                  analyzer, recognized at the national level.
+                </p>
+              </motion.div>
+              <motion.div
+                className="bg-gray-700 rounded-lg p-6"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <h3 className="text-xl font-bold mb-2">Hackathon Organizer</h3>
+                <p className="text-gray-300">
+                  Successfully organized and led the largest hackathon in school history, with over 35 participants and
+                  utilized bilingual skills to engage a diverse group of participants.
+                </p>
+              </motion.div>
+            </div>
           </div>
-        </div>
-      </section>
+        </motion.section>
 
-      <section id="education" className="py-20 bg-gray-800">
-        <div className="container mx-auto px-6">
-          <h2 className="text-3xl font-bold mb-8">Education</h2>
-          <div className="bg-gray-700 rounded-lg p-6">
-            <h3 className="text-xl font-bold mb-2">Diamond Bar High School</h3>
-            <p className="text-blue-400 mb-2">High School Diploma (Expected 2026)</p>
-            <ul className="list-disc list-inside text-gray-300">
-              <li>President of Hackathon Club</li>
-              <li>Web Devoloper at Play Maker</li>
-              <li>Web Devoloper at Silver Tech</li>
-            </ul>
+        <motion.section
+          id="contact"
+          className="py-20 bg-gray-800"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6 }}
+        >
+          <div className="container mx-auto px-6 text-center">
+            <h2 className="text-3xl font-bold mb-8">Contact Me</h2>
+            <p className="text-xl mb-8">
+              Feel free to reach out for collaborations or just a friendly hello. I'm fluent in both English and Chinese!
+            </p>
+            <div className="flex justify-center space-x-6">
+              <motion.a
+                href="mailto:Johnnyhsieh02@gmail.com"
+                className="text-2xl hover:text-blue-400 transition-colors flex items-center"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <MdEmail className="mr-2" /> Email
+              </motion.a>
+              <motion.a
+                href="https://www.linkedin.com/in/johnny-hsieh-97aa5b329/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-2xl hover:text-blue-400 transition-colors flex items-center"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <FaLinkedin className="mr-2" /> LinkedIn
+              </motion.a>
+              <motion.a
+                href="https://github.com/myName833"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-2xl hover:text-blue-400 transition-colors flex items-center"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <FaGithub className="mr-2" /> GitHub
+              </motion.a>
+            </div>
           </div>
-        </div>
-      </section>
+        </motion.section>
 
-      <section id="experience" className="py-20">
-        <div className="container mx-auto px-6">
-          <h2 className="text-3xl font-bold mb-8">Experience</h2>
-          <div className="space-y-8">
-            <ExperienceItem
-              title="DB Hackathon Club"
-              company="Diamond Bar High School"
-              position="President/Founder"
-              date="July 2024 - May 2026"
-              description={[
-                "Organized school's largest Hackathon with over 200 participants",
-                "Contributed to the design and development of the club website",
-                "Led workshops on various technologies including Python, JavaScript, and React",
-                "Utilized bilingual skills to engage with a diverse group of participants and sponsors",
-              ]}
-            />
-            <ExperienceItem
-              title="WPrime Sports"
-              company="WPrime Sports"
-              position="Web Development Intern"
-              date="Oct 2024 - Present"
-              description={[
-                "Designed and developed the company's responsive website using React and Next.js",
-                "Implemented SEO best practices, improving site visibility by 40%",
-                "Collaborated with the marketing team to create an intuitive user interface",
-                "Led a team of four web engineers during my internship, managing project milestones and ensuring timely delivery",
-                "Optimized website performance, reducing load time by 30%",
-                "Assisted in creating bilingual content for the website, expanding the company's reach",
-              ]}
-            />
-            <ExperienceItem
-              title="A+ Youth Tutors"
-              company="A+ Youth Tutors"
-              position="Regional Leader"
-              date="Jan 2025 - Present"
-              description={[
-                "Led a team of 15 tutors, providing guidance and support",
-                "Developed a scheduling system that increased tutor efficiency by 25%",
-                "Tutored over 50 students in Computer Science and Math",
-                "Implemented a feedback system, improving overall student satisfaction by 35%",
-                "Conducted bilingual tutoring sessions, catering to both English and Chinese-speaking students",
-              ]}
-            />
-            <ExperienceItem
-              title="Sunflower Youth Foundation"
-              company="Sunflower Youth Foundation"
-              position="Cultural Exchange Officer"
-              date="Jun 2024 - Present"
-              description={[
-                "Organized cultural exchange events for over 50 international students",
-                "Developed and maintained the foundation's website",
-                "Created a language exchange program, pairing native speakers with learners",
-                "Increased participation in foundation events by 50% through targeted outreach",
-                "Facilitated communication between Chinese and English-speaking participants",
-              ]}
-            />
+        <footer className="bg-gray-900 py-6">
+          <div className="container mx-auto px-6 text-center text-gray-400">
+            <p>&copy; {new Date().getFullYear()} Johnny Hsieh. All rights reserved.</p>
           </div>
-        </div>
-      </section>
-
-      <section id="projects" className="py-20 bg-gray-800">
-  <div className="container mx-auto px-6">
-    <h2 className="text-3xl font-bold mb-8">Projects</h2>
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-      <ProjectCard
-        title="Lockedin"
-        description="Winner of Congressional App Challenge 24-25. An app featuring a AI chatbot and grade trend analyzer with bilingual support."
-        technologies={["React", "Python", "Llama API", "Data Visualization","MongoDB","Express.js","Node.js"]}
-        link="https://github.com/myName833/congressapp24"
-      />
-      <ProjectCard
-        title="DB Hackathon Club Website"
-        description="Designed and developed the website for the school's Hackathon club, featuring event registration and resource sharing."
-        technologies={["React", "Vite.js", "Tailwind CSS"]}
-        link="https://dbhackathonclub.onrender.com/"
-      />
-      <ProjectCard
-        title="WPrime Sports Website"
-        description="Developed the company website during internship, improving online presence and implementing e-commerce features."
-        technologies={["React", "Vite.js","Tailwind CSS"]}
-        link="#"
-      />
-      <ProjectCard
-        title="EmployHub"
-        description="Created an interactive platform to help school’s guidance department so students can easily search job postings and employers can easily submit them. "
-        technologies={["React.js", "Vite.js", "Flask", "Python","SQL"]}
-        link="#"
-      />
-      <ProjectCard
-        title="Silver Tech"
-        description="Developed a website for a non-profit organization dedicated to helping elderly individuals navigate technology with confidence.  "
-        technologies={["React.js", "Next.js", "TypeScript", "Tailwind CSS"]}
-        link="#"
-      />
-    </div>
-  </div>
-</section>
-
-
-      <section id="achievements" className="py-20">
-        <div className="container mx-auto px-6">
-          <h2 className="text-3xl font-bold mb-8">Achievements</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <motion.div className="bg-gray-700 rounded-lg p-6" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-              <h3 className="text-xl font-bold mb-2">Congressional App Challenge Winner 24-25</h3>
-              <p className="text-gray-300">
-                Led the development of Lockedin, an innovative bilingual app featuring a chatbot and grade trend
-                analyzer, recognized at the national level.
-              </p>
-            </motion.div>
-            <motion.div className="bg-gray-700 rounded-lg p-6" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-              <h3 className="text-xl font-bold mb-2">Hackathon Organizer</h3>
-              <p className="text-gray-300">
-                Successfully organized and led the largest hackathon in school history, with over 35 participants and Utilized bilingual skills to engage a diverse group of
-                participants.
-              </p>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      <section id="contact" className="py-20 bg-gray-800">
-        <div className="container mx-auto px-6 text-center">
-          <h2 className="text-3xl font-bold mb-8">Contact Me</h2>
-          <p className="text-xl mb-8">
-            Feel free to reach out for collaborations or just a friendly hello. I'm fluent in both English and Chinese!
-          </p>
-          <div className="flex justify-center space-x-6">
-            <a
-              href="mailto:Johnnyhsieh02@gmail.com"
-              className="text-2xl hover:text-blue-400 transition-colors flex items-center"
-            >
-              <MdEmail className="mr-2" /> Email
-            </a>
-            <a
-              href="https://www.linkedin.com/in/johnny-hsieh-97aa5b329/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-2xl hover:text-blue-400 transition-colors flex items-center"
-            >
-              <FaLinkedin className="mr-2" /> LinkedIn
-            </a>
-            <a
-              href="https://github.com/myName833"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-2xl hover:text-blue-400 transition-colors flex items-center"
-            >
-              <FaGithub className="mr-2" /> GitHub
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <footer className="bg-gray-900 py-6">
-        <div className="container mx-auto px-6 text-center text-gray-400">
-          <p>&copy; {new Date().getFullYear()} Johnny Hsieh. All rights reserved.</p>
-        </div>
-      </footer>
-    </main>
+        </footer>
+      </main>
     </>
-  
   )
 }
-export default Home
 
+export default Home
