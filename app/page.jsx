@@ -19,7 +19,7 @@ import { SiCplusplus, SiTailwindcss, SiNextdotjs } from "react-icons/si"
 import { MdEmail, MdWork, MdCode } from "react-icons/md"
 import BackgroundPaths from "../components/BackgroundPaths"
 
-const SkillItem = ({ icon, name, level }) => (
+const SkillItem = ({ icon, title, level }) => (
   <motion.div
     className="bg-gray-800 rounded-lg p-4 flex items-center space-x-4"
     whileHover={{ scale: 1.05 }}
@@ -27,7 +27,7 @@ const SkillItem = ({ icon, name, level }) => (
   >
     <span className="text-3xl text-blue-400">{icon}</span>
     <div>
-      <span className="font-semibold">{name}</span>
+      <span className="font-semibold">{title}</span>
       <div className="w-full bg-gray-700 rounded-full h-2.5 mt-2">
         <div className="bg-blue-600 h-2.5 rounded-full" style={{ width: `${level}%` }}></div>
       </div>
@@ -244,14 +244,15 @@ const Home = () => {
           <div className="container mx-auto px-6">
             <h2 className="text-3xl font-bold mb-8">Skills</h2>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-              <SkillItem icon={<FaPython />} name="Python" level={60} />
-              <SkillItem icon={<SiCplusplus />} name="C++" level={60} />
-              <SkillItem icon={<FaHtml5 />} name="HTML" level={100} />
-              <SkillItem icon={<FaCss3Alt />} name="CSS" level={95} />
-              <SkillItem icon={<FaJs />} name="JavaScript" level={95} />
-              <SkillItem icon={<FaReact />} name="React.js" level={90} />
-              <SkillItem icon={<SiNextdotjs />} name="Next.js" level={60} />
-              <SkillItem icon={<SiTailwindcss />} name="Tailwind CSS" level={90} />
+            <SkillItem icon={<FaHtml5 className="text-orange-500 text-4xl" />} title="HTML5" level={90} />
+        <SkillItem icon={<FaCss3Alt className="text-blue-500 text-4xl" />} title="CSS3" level={85} />
+        <SkillItem icon={<FaJs className="text-yellow-500 text-4xl" />} title="JavaScript" level={80} />
+        <SkillItem icon={<FaReact className="text-blue-500 text-4xl" />} title="React" level={75} />
+        <SkillItem icon={<FaNodeJs className="text-green-500 text-4xl" />} title="Node.js" level={70} />
+        <SkillItem icon={<FaPython className="text-blue-600 text-4xl" />} title="Python" level={85} />
+        <SkillItem icon={<SiCplusplus className="text-blue-600 text-4xl" />} title="C++" level={80} />
+        <SkillItem icon={<SiNextdotjs className="text-black text-4xl" />} title="Next.js" level={75} />
+        <SkillItem icon={<SiTailwindcss className="text-blue-500 text-4xl" />} title="Tailwind CSS" level={85} />
             </div>
           </div>
         </motion.section>
