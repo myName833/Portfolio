@@ -56,7 +56,7 @@ const ExperienceItem = ({ title, company, position, date, description }) => (
   </motion.div>
 )
 
-const ProjectCard = ({ title, description, technologies, link }) => (
+const ProjectCard = ({ title, description, technologies, link, github }) => (
   <motion.div
     className="bg-gray-800 rounded-lg overflow-hidden"
     whileHover={{ scale: 1.05 }}
@@ -74,6 +74,9 @@ const ProjectCard = ({ title, description, technologies, link }) => (
       </div>
       <a href={link} target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">
         View Project
+      </a>
+      <a href={github} target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">
+        View On Github
       </a>
     </div>
   </motion.div>
@@ -389,31 +392,36 @@ const Home = () => {
                 title="Lockedin"
                 description="Winner of Congressional App Challenge 24-25. An app featuring a AI chatbot and grade trend analyzer with bilingual support."
                 technologies={["React", "Python", "Llama API", "Data Visualization", "MongoDB", "Express.js", "Node.js"]}
-                link="https://github.com/myName833/congressapp24"
+                
+                github="https://github.com/myName833/congressapp24"
               />
               <ProjectCard
                 title="DB Hackathon Club Website"
                 description="Designed and developed the website for the school's Hackathon club, featuring event registration and resource sharing."
                 technologies={["React", "Vite.js", "Tailwind CSS"]}
                 link="https://dbhackathonclub.onrender.com/"
+                github="https://github.com/henrychen4736/Hackathon-Club-Website"
               />
               <ProjectCard
                 title="WPrime Sports Website"
                 description="Developed the company website during internship, improving online presence and implementing e-commerce features."
                 technologies={["React", "Vite.js", "Tailwind CSS"]}
                 link="#"
+                github="https://github.com/DBHackathonClub/Company-Website"              
               />
               <ProjectCard
                 title="EmployHub"
                 description="Created an interactive platform to help school's guidance department so students can easily search job postings and employers can easily submit them."
                 technologies={["React.js", "Vite.js", "Flask", "Python", "SQL"]}
                 link="#"
+                github="https://github.com/myName833/24-25-FBLA-COMP"
               />
               <ProjectCard
                 title="Silver Tech"
                 description="Developed a website for a non-profit organization dedicated to helping elderly individuals navigate technology with confidence."
                 technologies={["React.js", "Next.js", "TypeScript", "Tailwind CSS"]}
                 link="#"
+                github=""
               />
             </div>
           </div>
