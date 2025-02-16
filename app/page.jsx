@@ -35,30 +35,44 @@ const SkillItem = ({ icon, title, level }) => (
   </motion.div>
 )
 
-const ExperienceItem = ({ title, company, position, date, description }) => (
+const ExperienceItem = ({ title, company, position, date, description, link }) => (
   <motion.div
-    className="bg-gray-700 rounded-lg p-6"
+    className="bg-gray-700 rounded-lg p-6 transition-transform duration-300 hover:shadow-lg"
     initial={{ opacity: 0, y: 20 }}
     whileInView={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.5 }}
+    transition={{ duration: 0.01 }}
     viewport={{ once: true }}
+    whileHover={{ scale: 1.05 }}
+    whileTap={{ scale: 0.95 }}
   >
     <h3 className="text-xl font-bold mb-2">{title}</h3>
     <p className="text-blue-400 mb-2">
       {company} - {position}
     </p>
     <p className="text-gray-400 mb-4">{date}</p>
-    <ul className="list-disc list-inside text-gray-300">
+    <ul className="list-disc list-inside text-gray-300 mb-4">
       {description.map((item, index) => (
         <li key={index}>{item}</li>
       ))}
     </ul>
+      <a
+        href={link}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="relative text-blue-400 hover:text-blue-300 transition-colors duration-300 
+                   after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-0 after:h-[2px] 
+                   after:bg-blue-400 after:transition-all after:duration-300 hover:after:w-full"
+      >
+        Visit Website
+      </a>
   </motion.div>
-)
+);
+
+
 
 const ProjectCard = ({ title, description, technologies, link, github }) => (
   <motion.div
-    className="bg-gray-800 rounded-lg overflow-hidden"
+    className="bg-gray-800 rounded-lg overflow-hidden transition-transform duration-300 hover:shadow-lg"
     whileHover={{ scale: 1.05 }}
     whileTap={{ scale: 0.95 }}
   >
@@ -72,12 +86,28 @@ const ProjectCard = ({ title, description, technologies, link, github }) => (
           </span>
         ))}
       </div>
-      <a href={link} target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">
-        View Project
-      </a>
-      <a href={github} target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">
-        View On Github
-      </a>
+      <div className="flex gap-4">
+        <a
+          href={link}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="relative text-blue-400 hover:text-blue-300 transition-colors duration-300 
+                     after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-0 after:h-[2px] 
+                     after:bg-blue-400 after:transition-all after:duration-300 hover:after:w-full"
+        >
+          View Project
+        </a>
+        <a
+          href={github}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="relative text-blue-400 hover:text-blue-300 transition-colors duration-300 
+                     after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-0 after:h-[2px] 
+                     after:bg-blue-400 after:transition-all after:duration-300 hover:after:w-full"
+        >
+          View On Github
+        </a>
+      </div>
     </div>
   </motion.div>
 )
@@ -192,49 +222,52 @@ const Home = () => {
             </motion.div>
           </motion.div>
         </motion.section>
+        <section className="relative py-16">
+  <div className="relative hover-line-container">
+    {/* Pure CSS animated line */}
+    <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-blue-400 to-blue-600 
+                    transform scale-x-0 transition-transform duration-300 ease-in-out 
+                    group-hover:scale-x-100 origin-left" 
+    />
+    
+    <div className="container mx-auto px-6 group">
+      <h2 className="text-3xl font-bold mb-8">About Me</h2>
+      
+      <p className="text-lg text-gray-300 leading-relaxed">
+        I am a motivated high school student passionate about programming and web development, with hands-on
+        experience in building websites and a strong foundation in frontend development, Python, and C++. I aim to
+        further develop my skills and contribute to innovative projects. As the winner of the Congressional App
+        Challenge 24-25, I led the creation of Lockedin, an app featuring a chatbot and grade trend analyzer,
+        showcasing my ability to develop practical and impactful solutions. Being bilingual in Chinese and English,
+        I bring a multicultural perspective to my work and can effectively communicate with diverse teams.
+      </p>
 
-        <motion.section
-          id="about"
-          className="py-20 bg-gray-800"
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
-        >
-          <div className="container mx-auto px-6">
-            <h2 className="text-3xl font-bold mb-8">About Me</h2>
-            <p className="text-lg text-gray-300 leading-relaxed">
-              I am a motivated high school student passionate about programming and web development, with hands-on
-              experience in building websites and a strong foundation in frontend development, Python, and C++. I aim to
-              further develop my skills and contribute to innovative projects. As the winner of the Congressional App
-              Challenge 24-25, I led the creation of Lockedin, an app featuring a chatbot and grade trend analyzer,
-              showcasing my ability to develop practical and impactful solutions. Being bilingual in Chinese and English,
-              I bring a multicultural perspective to my work and can effectively communicate with diverse teams.
-            </p>
-            <div className="mt-8 flex flex-wrap gap-4">
-              <div className="flex items-center">
-                <FaAward className="text-blue-400 mr-2" />
-                <span>Congressional App Challenge Winner</span>
-              </div>
-              <div className="flex items-center">
-                <MdWork className="text-blue-400 mr-2" />
-                <span>Web Development Intern</span>
-              </div>
-              <div className="flex items-center">
-                <MdCode className="text-blue-400 mr-2" />
-                <span>Web Developer</span>
-              </div>
-              <div className="flex items-center">
-                <FaGraduationCap className="text-blue-400 mr-2" />
-                <span>High School Senior</span>
-              </div>
-              <div className="flex items-center">
-                <FaLanguage className="text-blue-400 mr-2" />
-                <span>Bilingual (Chinese/English)</span>
-              </div>
-            </div>
-          </div>
-        </motion.section>
+      <div className="mt-8 flex flex-wrap gap-4">
+        <div className="flex items-center">
+          <FaAward className="text-blue-400 mr-2" />
+          <span>Congressional App Challenge Winner</span>
+        </div>
+        <div className="flex items-center">
+          <MdWork className="text-blue-400 mr-2" />
+          <span>Web Development Intern</span>
+        </div>
+        <div className="flex items-center">
+          <MdCode className="text-blue-400 mr-2" />
+          <span>Web Developer</span>
+        </div>
+        <div className="flex items-center">
+          <FaGraduationCap className="text-blue-400 mr-2" />
+          <span>High School Junior</span>
+        </div>
+        <div className="flex items-center">
+          <FaLanguage className="text-blue-400 mr-2" />
+          <span>Bilingual (Chinese/English)</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 
         <motion.section
           id="skills"
@@ -304,6 +337,7 @@ const Home = () => {
                   "Led workshops on various technologies including Python, JavaScript, and React",
                   "Utilized bilingual skills to engage with a diverse group of participants and sponsors",
                 ]}
+                link="https://dbhackathonclub.onrender.com/"
               />
               <ExperienceItem
                 title="WPrime Sports"
@@ -318,6 +352,7 @@ const Home = () => {
                   "Optimized website performance, reducing load time by 30%",
                   "Assisted in creating bilingual content for the website, expanding the company's reach",
                 ]}
+                link="#"
               />
               <ExperienceItem
                 title="Silver Tech"
@@ -332,6 +367,7 @@ const Home = () => {
                   "Optimized backend and frontend performance, significantly reducing page load times.",
                   "Developed bilingual content to make the website accessible to a broader community and improve engagement.",
                 ]}
+                link="#"
               />
               <ExperienceItem
                 title="Play Maker"
@@ -346,6 +382,7 @@ const Home = () => {
                   "Optimized website performance, reducing load time and improving responsiveness.",
                   "Assisted in creating multilingual content, expanding the organization's outreach."
                 ]}
+                link="#"
               />
               <ExperienceItem
                 title="A+ Youth Tutors"
@@ -359,6 +396,7 @@ const Home = () => {
                   "Implemented a feedback system, improving overall student satisfaction by 35%",
                   "Conducted bilingual tutoring sessions, catering to both English and Chinese-speaking students",
                 ]}
+                link="https://www.youthaplus.com/"
               />
               <ExperienceItem
                 title="Sunflower Youth Foundation"
@@ -372,6 +410,7 @@ const Home = () => {
                   "Increased participation in foundation events by 50% through targeted outreach",
                   "Facilitated communication between Chinese and English-speaking participants",
                 ]}
+                link="https://sunfloweryouth.com/"
               />
             </div>
           </div>
