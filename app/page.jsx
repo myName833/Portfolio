@@ -224,7 +224,7 @@ const Home = () => {
         </motion.section>
         <section className="relative py-16">
   <div className="relative hover-line-container">
-    {/* Pure CSS animated line */}
+   
     <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-blue-400 to-blue-600 
                     transform scale-x-0 transition-transform duration-300 ease-in-out 
                     group-hover:scale-x-100 origin-left" 
@@ -412,6 +412,7 @@ const Home = () => {
                 ]}
                 link="https://sunfloweryouth.com/"
               />
+              
             </div>
           </div>
         </motion.section>
@@ -461,6 +462,13 @@ const Home = () => {
                 technologies={["React.js", "Next.js", "TypeScript", "Tailwind CSS"]}
                 link="#"
                 github=""
+              />
+              <ProjectCard
+                title="The Grind Guide"
+                description="Developed a website for a individuals to orginaize their daily tasks and goals."
+                technologies={["React.js", "Next.js", "TypeScript", "Tailwind CSS"]}
+                link="https://the-grind-guide.onrender.com/"
+                github="https://github.com/myName833/The-Grind-Guide"
               />
             </div>
           </div>
