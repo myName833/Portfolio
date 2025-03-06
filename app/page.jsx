@@ -342,7 +342,7 @@ const Home = () => {
               <ExperienceItem
                 title="WPrime Sports"
                 company="WPrime Sports"
-                position="Web Development Intern"
+                position="Web Development Head Intern"
                 date="Oct 2024 - Present"
                 description={[
                   "Designed and developed the company's responsive website using React and Next.js",
@@ -383,6 +383,19 @@ const Home = () => {
                   "Assisted in creating multilingual content, expanding the organization's outreach."
                 ]}
                 link="#"
+              />
+              <ExperienceItem
+                title="Mind 4 Youth Diamond Bar Chapter"
+                company="Mind 4 Youth Diamond Bar Chapter"
+                position="Founder & President"
+                date="Dec 2024 - Present"
+                description={[
+                  "President of Mind4Youth, a mental health organization dedicated to awareness and support.",
+                  "Organized TED-style talks and awareness campaigns, featuring experts to educate and inspire communities.",
+                  "Led and managed volunteers, coordinating initiatives to maximize outreach and engagement.",
+                  "Oversaw sharing initiatives, expanding mental health resources and accessibility to diverse communities."
+                ]}
+                link="https://mind4youth.com/"
               />
               <ExperienceItem
                 title="A+ Youth Tutors"
@@ -462,6 +475,20 @@ const Home = () => {
                 technologies={["React.js", "Next.js", "TypeScript", "Tailwind CSS"]}
                 link="#"
                 github=""
+              />
+              <ProjectCard
+                title="Play Maker"
+                description="Created a website for a nonprofit organization focused on empowering elderly individuals to use technology with confidence."
+                technologies={["React.js", "Next.js", "TypeScript", "Tailwind CSS"]}
+                link="#"
+                github=""
+              />
+              <ProjectCard
+                title="Weather App"
+                description="Developed a weather application utilizing APIs to provide real-time forecasts and interactive user features."
+                technologies={["React.js", "Vite.js", "Tailwind CSS", "API Integration"]} 
+                link="https://myname833.github.io/weather-app/"
+                github="https://github.com/myName833/weather-app"
               />
               <ProjectCard
                 title="The Grind Guide"
