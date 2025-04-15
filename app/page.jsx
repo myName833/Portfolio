@@ -433,7 +433,7 @@ const Home = () => {
                   title="WPrime Sports"
                   company="WPrime Sports"
                   position="Web Development Head Intern"
-                  date="Oct 2024 - Present"
+                  date="Oct 2024 - Apr 2025"
                   description={[
                     "Designed and developed the company's responsive website using React and Next.js",
                     "Implemented SEO best practices, improving site visibility by 40%",
