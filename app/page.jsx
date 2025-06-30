@@ -174,85 +174,85 @@ const Home = () => {
       </Head>
       <main className="min-h-screen bg-gray-900 text-white relative overflow-hidden">
         {/* Enhanced Parallax Background Elements */}
-<motion.div
-  className="absolute inset-0 z-0 overflow-hidden"
-  style={{
-    background: "radial-gradient(circle at 50% 50%, #1a365d 0%, #0a1628 100%)",
-  }}
->
-  {/* Deep space stars/particles layer */}
-  <motion.div
-    className="absolute inset-0"
-    style={{
-      backgroundImage: "url('/stars.png')",
-      backgroundSize: "cover",
-      opacity: 0.4,
-      y: scrollY * 0.1,
-    }}
-  />
-  
-  {/* Grid layer with improved movement */}
-  <motion.div
-    className="absolute inset-0"
-    style={{
-      backgroundImage: "url('/grid.png')",
-      backgroundSize: "50px 50px",
-      opacity: 0.15,
-      y: scrollY * 0.5,
-      x: scrollY * -0.1, // Slight horizontal movement for added dimension
-    }}
-  />
-  
-  {/* Subtle diagonal lines layer */}
-  <motion.div
-    className="absolute inset-0"
-    style={{
-      backgroundImage: "repeating-linear-gradient(45deg, rgba(255,255,255,0.03) 0px, rgba(255,255,255,0.03) 1px, transparent 1px, transparent 10px)",
-      y: scrollY * 0.3,
-      x: scrollY * 0.2,
-    }}
-  />
-  
-  {/* Primary glow effect */}
-  <motion.div
-    className="absolute inset-0"
-    style={{
-      background: "radial-gradient(circle at 50% 30%, rgba(66, 153, 225, 0.15) 0%, transparent 60%)",
-      y: scrollY * 0.4,
-    }}
-  />
-  
-  {/* Secondary smaller glow */}
-  <motion.div
-    className="absolute inset-0"
-    style={{
-      background: "radial-gradient(circle at 70% 60%, rgba(236, 72, 153, 0.1) 0%, transparent 40%)",
-      y: scrollY * -0.2,
-    }}
-  />
-  
-  {/* Floating orbs/elements (optional) */}
-  <motion.div
-    className="absolute h-32 w-32 rounded-full blur-xl"
-    style={{
-      background: "radial-gradient(circle, rgba(99, 102, 241, 0.2) 0%, transparent 70%)",
-      top: "20%",
-      left: "30%",
-      y: scrollY * 0.7,
-    }}
-  />
-  
-  <motion.div
-    className="absolute h-24 w-24 rounded-full blur-xl"
-    style={{
-      background: "radial-gradient(circle, rgba(236, 72, 153, 0.15) 0%, transparent 70%)",
-      top: "60%",
-      left: "70%",
-      y: scrollY * -0.6,
-    }}
-  />
-</motion.div>
-        
+        <motion.div
+          className="absolute inset-0 z-0 overflow-hidden"
+          style={{
+            background: "radial-gradient(circle at 50% 50%, #1a365d 0%, #0a1628 100%)",
+          }}
+        >
+          {/* Deep space stars/particles layer */}
+          <motion.div
+            className="absolute inset-0"
+            style={{
+              backgroundImage: "url('/stars.png')",
+              backgroundSize: "cover",
+              opacity: 0.4,
+              y: scrollY * 0.1,
+            }}
+          />
+
+          {/* Grid layer with improved movement */}
+          <motion.div
+            className="absolute inset-0"
+            style={{
+              backgroundImage: "url('/grid.png')",
+              backgroundSize: "50px 50px",
+              opacity: 0.15,
+              y: scrollY * 0.5,
+              x: scrollY * -0.1, // Slight horizontal movement for added dimension
+            }}
+          />
+
+          {/* Subtle diagonal lines layer */}
+          <motion.div
+            className="absolute inset-0"
+            style={{
+              backgroundImage: "repeating-linear-gradient(45deg, rgba(255,255,255,0.03) 0px, rgba(255,255,255,0.03) 1px, transparent 1px, transparent 10px)",
+              y: scrollY * 0.3,
+              x: scrollY * 0.2,
+            }}
+          />
+
+          {/* Primary glow effect */}
+          <motion.div
+            className="absolute inset-0"
+            style={{
+              background: "radial-gradient(circle at 50% 30%, rgba(66, 153, 225, 0.15) 0%, transparent 60%)",
+              y: scrollY * 0.4,
+            }}
+          />
+
+          {/* Secondary smaller glow */}
+          <motion.div
+            className="absolute inset-0"
+            style={{
+              background: "radial-gradient(circle at 70% 60%, rgba(236, 72, 153, 0.1) 0%, transparent 40%)",
+              y: scrollY * -0.2,
+            }}
+          />
+
+          {/* Floating orbs/elements (optional) */}
+          <motion.div
+            className="absolute h-32 w-32 rounded-full blur-xl"
+            style={{
+              background: "radial-gradient(circle, rgba(99, 102, 241, 0.2) 0%, transparent 70%)",
+              top: "20%",
+              left: "30%",
+              y: scrollY * 0.7,
+            }}
+          />
+
+          <motion.div
+            className="absolute h-24 w-24 rounded-full blur-xl"
+            style={{
+              background: "radial-gradient(circle, rgba(236, 72, 153, 0.15) 0%, transparent 70%)",
+              top: "60%",
+              left: "70%",
+              y: scrollY * -0.6,
+            }}
+          />
+        </motion.div>
+
         <div className="relative z-10">
           <BackgroundPaths />
           <Navbar />
@@ -315,15 +315,15 @@ const Home = () => {
 
           <section id="about" className="relative py-16">
             <div className="relative hover-line-container">
-            
+
               <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-blue-400 to-blue-600 
                               transform scale-x-0 transition-transform duration-300 ease-in-out 
                               group-hover:scale-x-100 origin-left" 
               />
-              
+
               <div className="container mx-auto px-6 group">
                 <h2 className="text-3xl font-bold mb-8">About Me</h2>
-                
+
                 <p className="text-lg text-gray-300 leading-relaxed">
                   I am a motivated high school student passionate about programming and web development, with hands-on
                   experience in building websites and a strong foundation in frontend development, Python, and C++. I aim to
@@ -430,6 +430,19 @@ const Home = () => {
                   link="https://dbhackathonclub.onrender.com/"
                 />
                 <ExperienceItem
+                  title="Kode4Kids"
+                  company="Diamond Bar High School"
+                  position="Head Scratch Instructor"
+                  date="Sep 2024 - Present"
+                  description={[
+                    "Taught Scratch programming to kids aged 8-13 as part of the Kode4Kids club at school",
+                    "Developed engaging lesson plans and interactive coding activities",
+                    "Helped young students build foundational programming skills in a fun environment",
+                    "Mentored and guided students through their first coding projects",
+                  ]}
+                  link="www.instagram.com/dbkode4kids/"
+                />
+                <ExperienceItem
                   title="WPrime Sports"
                   company="WPrime Sports"
                   position="Web Development Head Intern"
@@ -457,22 +470,21 @@ const Home = () => {
                     "Optimized backend and frontend performance, significantly reducing page load times.",
                     "Developed bilingual content to make the website accessible to a broader community and improve engagement.",
                   ]}
-                  link="#"
+                  link="https://silver-tech-website.onrender.com/"
                 />
                 <ExperienceItem
-                  title="Play Maker"
-                  company="Play Maker"
-                  position="Web Developer"
-                  date="Jan 2025 - Present"
+                  title="LA Metro"
+                  company="Los Angeles County Metropolitan Transportation Authority"
+                  position="Engineering Intern"
+                  date="Jun 2025 - Aug 2025"
                   description={[
-                    "Designed and developed a fully responsive website for a non-profit organization using React and Next.js.",
-                    "Implemented SEO best practices, increasing online visibility and engagement.",
-                    "Collaborated with stakeholders to create an intuitive and accessible user experience.",
-                    "Led a team of volunteer developers, ensuring project milestones were met efficiently.",
-                    "Optimized website performance, reducing load time and improving responsiveness.",
-                    "Assisted in creating multilingual content, expanding the organization's outreach."
+                    "Assisted in the design and layout of railway tracks for new transit projects.",
+                    "Created detailed 3D models of track systems and station infrastructure using engineering software.",
+                    "Collaborated with senior engineers on structural analysis and project planning.",
+                    "Participated in site visits and contributed to technical documentation for ongoing projects.",
+                    "Gained hands-on experience in civil engineering and transportation design."
                   ]}
-                  link="#"
+                  link="https://www.metro.net/"
                 />
                 <ExperienceItem
                   title="Mind 4 Youth Diamond Bar Chapter"
@@ -566,13 +578,6 @@ const Home = () => {
                   github="https://github.com/myName833/Silver-Tech"
                 />
                 <ProjectCard
-                  title="Play Maker"
-                  description="Created a website for a nonprofit organization focused on empowering elderly individuals to use technology with confidence."
-                  technologies={["React.js", "Next.js", "TypeScript", "Tailwind CSS"]}
-                  link="#"
-                  github="https://github.com/myName833/Play-Maker-Website"
-                />
-                <ProjectCard
                   title="Weather App"
                   description="Developed a weather application utilizing APIs to provide real-time forecasts and interactive user features."
                   technologies={["React.js", "Vite.js", "Tailwind CSS", "API Integration"]} 
@@ -585,6 +590,13 @@ const Home = () => {
                   technologies={["React.js", "Next.js", "TypeScript", "Tailwind CSS"]}
                   link="https://the-grind-guide.onrender.com/"
                   github="https://github.com/myName833/The-Grind-Guide"
+                />
+                <ProjectCard
+                  title="DBHS FBLA Website + Study Guide for HS Students"
+                  description="Developed a website for a HS student in preparing various test and FBLA Events"
+                  technologies={["React.js", "Flask", "Python", "Tailwind CSS","SQL"]}
+                  link="https://the-grind-guide.onrender.com/"
+                  github="https://github.com/myName833/DBHS-FBLA-Website"
                 />
               </div>
             </div>
