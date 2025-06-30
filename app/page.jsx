@@ -642,7 +642,7 @@ const Home = () => {
                 >
                   <h3 className="text-xl font-bold mb-2">FBLA State Leadership Conference Website Development</h3>
                   <p className="text-gray-300">
-                  Placed at FBLA State Leadership Conference (SLC) for the Web Development event, demonstrating strong technical skills and effective team collaboration in building a functional and innovative website.
+                  Placed 5 at FBLA State Leadership Conference (SLC) for the Web Development event, demonstrating strong technical skills and effective team collaboration in building a functional and innovative website.
                   </p>
                 </motion.div>
               </div>
