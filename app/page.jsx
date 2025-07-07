@@ -130,6 +130,23 @@ const Home = () => {
   };
 
   const Navbar = () => {
+    const [menuOpen, setMenuOpen] = useState(false);
+
+    const navItems = [
+      "About",
+      "Skills",
+      "Education",
+      "Experience",
+      "Projects",
+      "Achievements",
+      "Contact",
+    ];
+
+    const handleNavClick = (section) => {
+      scrollToSection(section.toLowerCase());
+      setMenuOpen(false);
+    };
+
     return (
       <motion.nav
         initial={{ opacity: 0, y: -20 }}
@@ -142,18 +159,19 @@ const Home = () => {
             <Image src="/logo.svg" alt="JH Logo" width={40} height={40} className="mr-2" />
             <motion.a
               onClick={() => scrollToSection('hero')}
-              className="text-2xl font-bold cursor-pointer"
+              className="text-xl md:text-2xl font-bold cursor-pointer whitespace-nowrap"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
               Johnny Hsieh
             </motion.a>
           </div>
-          <div className="space-x-4">
-            {["About", "Skills", "Education", "Experience", "Projects", "Achievements", "Contact"].map((item) => (
+          {/* Desktop Nav */}
+          <div className="hidden md:flex space-x-4">
+            {navItems.map((item) => (
               <motion.a
                 key={item}
-                onClick={() => scrollToSection(item.toLowerCase())}
+                onClick={() => handleNavClick(item)}
                 className="hover:text-blue-400 transition-colors cursor-pointer"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
@@ -162,9 +180,47 @@ const Home = () => {
               </motion.a>
             ))}
           </div>
+          {/* Mobile Hamburger */}
+          <div className="md:hidden flex items-center">
+            <button
+              aria-label="Open navigation menu"
+              onClick={() => setMenuOpen(!menuOpen)}
+              className="focus:outline-none"
+            >
+              <svg
+                className="w-8 h-8 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                {menuOpen ? (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                ) : (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8h16M4 16h16" />
+                )}
+              </svg>
+            </button>
+          </div>
         </div>
+        {/* Mobile Menu */}
+        {menuOpen && (
+          <div className="md:hidden bg-gray-800/95 px-6 pb-4 pt-2 shadow-lg">
+            <div className="flex flex-col space-y-2">
+              {navItems.map((item) => (
+                <button
+                  key={item}
+                  onClick={() => handleNavClick(item)}
+                  className="text-left text-lg py-2 px-2 rounded hover:bg-blue-600 hover:text-white transition-colors"
+                >
+                  {item}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
       </motion.nav>
-    )
+    );
   }
 
   return (
