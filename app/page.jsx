@@ -623,7 +623,7 @@ const Home = () => {
                   title="EmployHub"
                   description="Created an interactive platform to help school's guidance department so students can easily search job postings and employers can easily submit them."
                   technologies={["React.js", "Vite.js", "Flask", "Python", "SQL"]}
-                  link="#"
+                  link="https://silver-tech-website.onrender.com/"
                   github="https://github.com/myName833/24-25-FBLA-COMP"
                 />
                 <ProjectCard
@@ -648,10 +648,10 @@ const Home = () => {
                   github="https://github.com/myName833/The-Grind-Guide"
                 />
                 <ProjectCard
-                  title="DBHS FBLA Website + Study Guide for HS Students"
-                  description="Developed a website for a HS student in preparing various test and FBLA Events"
+                  title="DBHS FBLA AI Study Website"
+                  description="Developed an AI powered website for a HS student in preparing FBLA Events"
                   technologies={["React.js", "Flask", "Python", "Tailwind CSS","SQL"]}
-                  link="https://the-grind-guide.onrender.com/"
+                  link="https://dbfbla.onrender.com/signin"
                   github="https://github.com/myName833/DBHS-FBLA-Website"
                 />
               </div>
