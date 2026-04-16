@@ -23,8 +23,6 @@ const nextConfig = {
     parallelServerBuildTraces: true,
     parallelServerCompiles: true,
   },
-  
-  
 };
 
 // Function to merge user config if available

@@ -69,43 +69,73 @@ const ExperienceItem = ({ title, company, position, date, description, link }) =
   </motion.div>
 );
 
-const ProjectCard = ({ title, description, technologies, link, github }) => (
+const ProjectCard = ({ title, description, technologies, link, github, videoLink, videoThumbnail }) => (
   <motion.div
     className="bg-gray-800 rounded-lg overflow-hidden transition-transform duration-300 hover:shadow-lg"
     whileHover={{ scale: 1.05 }}
     whileTap={{ scale: 0.95 }}
   >
     <div className="p-6">
-      <h3 className="text-xl font-bold mb-2">{title}</h3>
-      <p className="text-gray-300 mb-4">{description}</p>
-      <div className="flex flex-wrap gap-2 mb-4">
-        {technologies.map((tech, index) => (
-          <span key={index} className="bg-blue-600 text-white text-xs px-2 py-1 rounded">
-            {tech}
-          </span>
-        ))}
-      </div>
-      <div className="flex gap-4">
-        <a
-          href={link}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="relative text-blue-400 hover:text-blue-300 transition-colors duration-300 
-                     after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-0 after:h-[2px] 
-                     after:bg-blue-400 after:transition-all after:duration-300 hover:after:w-full"
-        >
-          View Project
-        </a>
-        <a
-          href={github}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="relative text-blue-400 hover:text-blue-300 transition-colors duration-300 
-                     after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-0 after:h-[2px] 
-                     after:bg-blue-400 after:transition-all after:duration-300 hover:after:w-full"
-        >
-          View On Github
-        </a>
+      <div className={`gap-6 ${videoLink && videoThumbnail ? "md:grid md:grid-cols-[1.5fr_1fr] md:items-start" : ""}`}>
+        <div>
+          <h3 className="text-xl font-bold mb-2">{title}</h3>
+          <p className="text-gray-300 mb-4">{description}</p>
+          <div className="flex flex-wrap gap-2 mb-4">
+            {technologies.map((tech, index) => (
+              <span key={index} className="bg-blue-600 text-white text-xs px-2 py-1 rounded">
+                {tech}
+              </span>
+            ))}
+          </div>
+          <div className="flex flex-wrap gap-4">
+            <a
+              href={link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="relative text-blue-400 hover:text-blue-300 transition-colors duration-300 
+                         after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-0 after:h-[2px] 
+                         after:bg-blue-400 after:transition-all after:duration-300 hover:after:w-full"
+            >
+              View Project
+            </a>
+            <a
+              href={github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="relative text-blue-400 hover:text-blue-300 transition-colors duration-300 
+                         after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-0 after:h-[2px] 
+                         after:bg-blue-400 after:transition-all after:duration-300 hover:after:w-full"
+            >
+              View On Github
+            </a>
+            {videoLink && (
+              <a
+                href={videoLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="relative text-blue-400 hover:text-blue-300 transition-colors duration-300 
+                           after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-0 after:h-[2px] 
+                           after:bg-blue-400 after:transition-all after:duration-300 hover:after:w-full"
+              >
+                Watch Video
+              </a>
+            )}
+          </div>
+        </div>
+        {videoLink && videoThumbnail && (
+          <a
+            href={videoLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group mt-6 block overflow-hidden rounded-lg border border-blue-500/20 md:mt-0"
+          >
+            <img
+              src={videoThumbnail}
+              alt={`${title} video thumbnail`}
+              className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+            />
+          </a>
+        )}
       </div>
     </div>
   </motion.div>
@@ -404,7 +434,7 @@ const Home = () => {
                   </div>
                   <div className="flex items-center">
                     <FaGraduationCap className="text-blue-400 mr-2" />
-                    <span>High School Junior</span>
+                    <span>High School Senior  </span>
                   </div>
                   <div className="flex items-center">
                     <FaLanguage className="text-blue-400 mr-2" />
@@ -602,7 +632,7 @@ const Home = () => {
                   title="Lockedin"
                   description="Winner of Congressional App Challenge 24-25. An app featuring a AI chatbot and grade trend analyzer with bilingual support."
                   technologies={["React", "Python", "Llama API", "Data Visualization", "MongoDB", "Express.js", "Node.js"]}
-                  link="#"
+                  link="https://github.com/myName833/congressapp24"
                   github="https://github.com/myName833/congressapp24"
                 />
                 <ProjectCard
@@ -623,14 +653,14 @@ const Home = () => {
                   title="EmployHub"
                   description="Created an interactive platform to help school's guidance department so students can easily search job postings and employers can easily submit them."
                   technologies={["React.js", "Vite.js", "Flask", "Python", "SQL"]}
-                  link="https://silver-tech-website.onrender.com/"
+                  link="https://github.com/myName833/24-25-FBLA-COMP"
                   github="https://github.com/myName833/24-25-FBLA-COMP"
                 />
                 <ProjectCard
                   title="Silver Tech"
                   description="Developed a website for a non-profit organization dedicated to helping elderly individuals navigate technology with confidence."
                   technologies={["React.js", "Next.js", "TypeScript", "Tailwind CSS"]}
-                  link="#"
+                  link="https://silver-tech-website.onrender.com/"
                   github="https://github.com/myName833/Silver-Tech"
                 />
                 <ProjectCard
@@ -641,18 +671,34 @@ const Home = () => {
                   github="https://github.com/myName833/weather-app"
                 />
                 <ProjectCard
-                  title="The Grind Guide"
-                  description="Developed a website for a individuals to orginaize their daily tasks and goals."
-                  technologies={["React.js", "Next.js", "TypeScript", "Tailwind CSS"]}
-                  link="https://the-grind-guide.onrender.com/"
-                  github="https://github.com/myName833/The-Grind-Guide"
-                />
-                <ProjectCard
                   title="DBHS FBLA AI Study Website"
                   description="Developed an AI powered website for a HS student in preparing FBLA Events"
                   technologies={["React.js", "Flask", "Python", "Tailwind CSS","SQL"]}
                   link="https://dbfbla.onrender.com/signin"
                   github="https://github.com/myName833/DBHS-FBLA-Website"
+                  videoLink="https://www.youtube.com/watch?v=STxqJcr_Juo&t=15s"
+                  videoThumbnail="https://img.youtube.com/vi/STxqJcr_Juo/maxresdefault.jpg"
+                />
+                <ProjectCard
+                  title="FBLA Mobile App Competition App"
+                  description="Built a full-stack FBLA chapter mobile app with SwiftUI, Firebase authentication, chapter news, event calendars, Instagram integration, and backend-powered member management."
+                  technologies={["SwiftUI", "Firebase", "Flask", "SQLAlchemy", "SQLite"]}
+                  link="https://github.com/GSWForever8/FBLA2026"
+                  github="https://github.com/GSWForever8/FBLA2026"
+                />
+                <ProjectCard
+                  title="FBLA Website Coding & Development"
+                  description="Co-developed Campus Relink, a full-stack lost-and-found platform with student sign-in, admin moderation, searchable item listings, and dashboard tools for school-wide use."
+                  technologies={["React", "Vite", "Tailwind CSS", "Flask", "SQLite"]}
+                  link="https://github.com/myName833/FBLA-Web-Dev-2026"
+                  github="https://github.com/myName833/FBLA-Web-Dev-2026"
+                />
+                <ProjectCard
+                  title="Crypto Trading Model"
+                  description="Built a BTC probability and directional trading model with calibration, backtesting, and alerting workflows, with a record of generating over $8K."
+                  technologies={["Python", "Flask", "Quant Research", "Backtesting", "Automation"]}
+                  link="https://github.com/myName833/BTCNEW"
+                  github="https://github.com/myName833/BTCNEW"
                 />
               </div>
             </div>
@@ -696,9 +742,19 @@ const Home = () => {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <h3 className="text-xl font-bold mb-2">FBLA State Leadership Conference Website Development</h3>
+                  <h3 className="text-xl font-bold mb-2">FBLA State Leadership Conference Website Coding & Development</h3>
                   <p className="text-gray-300">
-                  Placed 5 at FBLA State Leadership Conference (SLC) for the Web Development event, demonstrating strong technical skills and effective team collaboration in building a functional and innovative website.
+                    Placed 4th at the FBLA State Leadership Conference in Website Coding & Development, showcasing strong full-stack development and team collaboration.
+                  </p>
+                </motion.div>
+                <motion.div
+                  className="bg-gray-700 rounded-lg p-6"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <h3 className="text-xl font-bold mb-2">FBLA State Leadership Conference Mobile App Development</h3>
+                  <p className="text-gray-300">
+                    Placed 3rd at the FBLA State Leadership Conference in Mobile Application Development by building a chapter-focused app with event, news, and member tools.
                   </p>
                 </motion.div>
               </div>
