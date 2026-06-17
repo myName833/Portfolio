@@ -13,8 +13,11 @@ import {
   FaNodeJs,
   FaReact,
   FaAward,
+  FaBrain,
+  FaDatabase,
   FaGraduationCap,
   FaLanguage,
+  FaUsers,
 } from "react-icons/fa"
 import { SiCplusplus, SiTailwindcss, SiNextdotjs } from "react-icons/si"
 import { MdEmail, MdWork, MdCode } from "react-icons/md"
@@ -36,7 +39,34 @@ const SkillItem = ({ icon, title, level }) => (
   </motion.div>
 )
 
-const ExperienceItem = ({ title, company, position, date, description, link }) => (
+const ProofCard = ({ value, label }) => (
+  <motion.div
+    className="rounded-lg border border-blue-400/20 bg-gray-900/70 px-5 py-4 text-left shadow-lg shadow-blue-950/20"
+    whileHover={{ y: -4 }}
+    transition={{ duration: 0.2 }}
+  >
+    <p className="text-2xl font-bold text-blue-300">{value}</p>
+    <p className="mt-1 text-sm text-gray-300">{label}</p>
+  </motion.div>
+)
+
+const HighlightCard = ({ icon, title, description }) => (
+  <motion.div
+    className="rounded-lg bg-gray-800/80 p-5"
+    initial={{ opacity: 0, y: 16 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    transition={{ duration: 0.35 }}
+  >
+    <div className="mb-3 flex items-center gap-3 text-blue-300">
+      <span className="text-2xl">{icon}</span>
+      <h3 className="text-lg font-semibold text-white">{title}</h3>
+    </div>
+    <p className="text-sm leading-6 text-gray-300">{description}</p>
+  </motion.div>
+)
+
+const ExperienceItem = ({ title, company, position, date, description, link, linkLabel = "Visit Website" }) => (
   <motion.div
     className="bg-gray-700 rounded-lg p-6 transition-transform duration-300 hover:shadow-lg"
     initial={{ opacity: 0, y: 20 }}
@@ -51,11 +81,12 @@ const ExperienceItem = ({ title, company, position, date, description, link }) =
       {company} - {position}
     </p>
     <p className="text-gray-400 mb-4">{date}</p>
-    <ul className="list-disc list-inside text-gray-300 mb-4">
+    <ul className="list-disc list-inside space-y-2 text-gray-300 mb-4">
       {description.map((item, index) => (
         <li key={index}>{item}</li>
       ))}
     </ul>
+    {link && (
       <a
         href={link}
         target="_blank"
@@ -64,8 +95,9 @@ const ExperienceItem = ({ title, company, position, date, description, link }) =
                    after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-0 after:h-[2px] 
                    after:bg-blue-400 after:transition-all after:duration-300 hover:after:w-full"
       >
-        Visit Website
+        {linkLabel}
       </a>
+    )}
   </motion.div>
 );
 
@@ -345,7 +377,7 @@ const Home = () => {
 
           <motion.section
             id="hero"
-            className="h-screen flex items-center justify-center pt-16"
+            className="min-h-screen flex items-center justify-center px-6 pt-24 pb-16"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8 }}
@@ -354,7 +386,7 @@ const Home = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className="text-center"
+              className="mx-auto max-w-5xl text-center"
             >
               <Image
                 src="johnny.jpg"
@@ -363,15 +395,45 @@ const Home = () => {
                 height={200}
                 className="rounded-full mx-auto mb-8"
               />
-              <h1 className="text-5xl font-bold mb-4">Johnny Hsieh</h1>
-              <p className="text-xl text-gray-300 mb-8">
-                High School Student | Programmer | Web Developer | Bilingual (Chinese/English)
+              <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-blue-300">
+                AI and full-stack software developer
+              </p>
+
+              <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-gray-300 md:text-xl">
+                Johny Hsieh is a Diamond Bar based developer focused on AI-powered education tools, full-stack web apps,
+                and bilingual user experiences. My projects have served 1,000+ students, won the Congressional App Challenge,
+                and helped real organizations ship better digital products.
               </p>
               <motion.div
-                className="flex justify-center space-x-4"
+                className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.5, duration: 0.5 }}
+              >
+                <a
+                  href="#projects"
+                  onClick={(event) => {
+                    event.preventDefault();
+                    scrollToSection("projects");
+                  }}
+                  className="rounded-lg bg-blue-500 px-5 py-3 font-semibold text-white transition-colors hover:bg-blue-400"
+                >
+                  View Project Proof
+                </a>
+                <a
+                  href="/Resume.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="rounded-lg border border-blue-300/40 px-5 py-3 font-semibold text-blue-100 transition-colors hover:border-blue-200 hover:bg-blue-400/10"
+                >
+                  Open Resume
+                </a>
+              </motion.div>
+              <motion.div
+                className="mt-8 flex justify-center space-x-4"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.65, duration: 0.5 }}
               >
                 <a
                   href="https://github.com/myName833"
@@ -396,6 +458,11 @@ const Home = () => {
                   <MdEmail />
                 </a>
               </motion.div>
+              <div className="mx-auto mt-10 grid max-w-4xl grid-cols-1 gap-4 sm:grid-cols-3">
+                <ProofCard value="1,000+" label="students supported by the FBLA AI study platform" />
+                <ProofCard value="CAC winner" label="Congressional App Challenge 2024-2025 for Lockedin" />
+                <ProofCard value="Full-stack" label="React, Flask, Python, SQL, AI APIs, and deployment" />
+              </div>
             </motion.div>
           </motion.section>
 
@@ -410,14 +477,30 @@ const Home = () => {
               <div className="container mx-auto px-6 group">
                 <h2 className="text-3xl font-bold mb-8">About Me</h2>
 
-                <p className="text-lg text-gray-300 leading-relaxed">
-                  I am a motivated high school student passionate about programming and web development, with hands-on
-                  experience in building websites and a strong foundation in frontend development, Python, and C++. I aim to
-                  further develop my skills and contribute to innovative projects. As the winner of the Congressional App
-                  Challenge 24-25, I led the creation of Lockedin, an app featuring a chatbot and grade trend analyzer,
-                  showcasing my ability to develop practical and impactful solutions. Being bilingual in Chinese and English,
-                  I bring a multicultural perspective to my work and can effectively communicate with diverse teams.
+                <p className="max-w-4xl text-lg text-gray-300 leading-relaxed">
+                  I am a software developer who likes building products that solve visible problems: study platforms for
+                  competition students, bilingual education tools, nonprofit websites, and internal systems for school teams.
+                  My strongest pattern is taking an idea from user need to shipped product, then improving it with AI,
+                  data, and clean full-stack architecture.
                 </p>
+
+                <div className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-3">
+                  <HighlightCard
+                    icon={<FaBrain />}
+                    title="AI product builder"
+                    description="Built AI quiz generation, chatbot workflows, prompt-driven study flows, and analytics tools using OpenAI APIs, Llama integrations, Python, and Flask."
+                  />
+                  <HighlightCard
+                    icon={<FaDatabase />}
+                    title="Full-stack execution"
+                    description="Comfortable across React, Next.js, Flask, SQL, Firebase, deployment, performance optimization, and API integration."
+                  />
+                  <HighlightCard
+                    icon={<FaUsers />}
+                    title="Leader with users"
+                    description="Founded and led technical clubs and service groups, taught younger students, and built products with real student, nonprofit, and company stakeholders."
+                  />
+                </div>
 
                 <div className="mt-8 flex flex-wrap gap-4">
                   <div className="flex items-center">
@@ -434,7 +517,7 @@ const Home = () => {
                   </div>
                   <div className="flex items-center">
                     <FaGraduationCap className="text-blue-400 mr-2" />
-                    <span>High School Senior  </span>
+                    <span>AS in Computer Science Expected 2027</span>
                   </div>
                   <div className="flex items-center">
                     <FaLanguage className="text-blue-400 mr-2" />
@@ -462,6 +545,7 @@ const Home = () => {
                 <SkillItem icon={<FaReact className="text-blue-500 text-4xl" />} title="React" level={75} />
                 <SkillItem icon={<FaNodeJs className="text-green-500 text-4xl" />} title="Node.js" level={70} />
                 <SkillItem icon={<FaPython className="text-blue-600 text-4xl" />} title="Python" level={85} />
+                <SkillItem icon={<FaBrain className="text-purple-400 text-4xl" />} title="AI APIs" level={80} />
                 <SkillItem icon={<SiCplusplus className="text-blue-600 text-4xl" />} title="C++" level={80} />
                 <SkillItem icon={<SiNextdotjs className="text-white text-4xl" />} title="Next.js" level={75} />
                 <SkillItem icon={<SiTailwindcss className="text-blue-500 text-4xl" />} title="Tailwind CSS" level={85} />
@@ -479,14 +563,16 @@ const Home = () => {
           >
             <div className="container mx-auto px-6">
               <h2 className="text-3xl font-bold mb-8">Education</h2>
-              <div className="bg-gray-700 rounded-lg p-6">
-                <h3 className="text-xl font-bold mb-2">Diamond Bar High School</h3>
-                <p className="text-blue-400 mb-2">High School Diploma (Expected 2026)</p>
-                <ul className="list-disc list-inside text-gray-300">
-                  <li>President of Hackathon Club</li>
-                  <li>Web Development Head Intern at Wprime Sports</li>
-                  <li>Web Developer at Silver Tech</li>
-                </ul>
+              <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+                <div className="bg-gray-700 rounded-lg p-6">
+                  <h3 className="text-xl font-bold mb-2">Diamond Bar High School</h3>
+                  <p className="text-blue-400 mb-2">High School Diploma, Expected May 2026</p>
+                  <ul className="list-disc list-inside space-y-2 text-gray-300">
+                    <li>Honoree of Brahma Tech Academy</li>
+                    <li>President and founder of DB Hackathon Club</li>
+                    <li>Built leadership experience across software, tutoring, and community organizations.</li>
+                  </ul>
+                </div>
               </div>
             </div>
           </motion.section>
@@ -502,6 +588,34 @@ const Home = () => {
             <div className="container mx-auto px-6">
               <h2 className="text-3xl font-bold mb-8">Experience</h2>
               <div className="space-y-8">
+                <ExperienceItem
+                  title="FBLA AI Study Platform"
+                  company="Diamond Bar High School"
+                  position="AI Software Developer"
+                  date="Feb 2025 - May 2026"
+                  description={[
+                    "Developed and deployed an AI-powered educational platform serving 1,000+ students preparing for FBLA competitions.",
+                    "Engineered quiz generation and personalized study workflows using React, Flask, OpenAI API, and SQL.",
+                    "Designed full-stack application architecture across frontend, backend, database, and deployment workflows.",
+                    "Improved functionality through continuous iteration, performance tuning, and user-focused feature updates.",
+                  ]}
+                  link="https://dbfbla.onrender.com/signin"
+                  linkLabel="View Platform"
+                />
+                <ExperienceItem
+                  title="Lockedin"
+                  company="Congressional App Challenge Project"
+                  position="Software Developer"
+                  date="Jun 2024 - Dec 2024"
+                  description={[
+                    "Led development of an award-winning bilingual education app with an AI chatbot and academic performance analytics.",
+                    "Built full-stack functionality using React, Python, Llama API integrations, and interactive data visualization.",
+                    "Created grade trend tools that help students understand academic progress and make better study decisions.",
+                    "Won the Congressional App Challenge 2024-2025 for innovation in education technology.",
+                  ]}
+                  link="https://github.com/myName833/congressapp24"
+                  linkLabel="View Code"
+                />
                 <ExperienceItem
                   title="DB Hackathon Club"
                   company="Diamond Bar High School"
@@ -526,7 +640,7 @@ const Home = () => {
                     "Helped young students build foundational programming skills in a fun environment",
                     "Mentored and guided students through their first coding projects",
                   ]}
-                  link="www.instagram.com/dbkode4kids/"
+                  link="https://www.instagram.com/dbkode4kids/"
                 />
                 <ExperienceItem
                   title="WPrime Sports"
@@ -534,14 +648,13 @@ const Home = () => {
                   position="Web Development Head Intern"
                   date="Oct 2024 - Apr 2025"
                   description={[
-                    "Designed and developed the company's responsive website using React and Next.js",
-                    "Implemented SEO best practices, improving site visibility by 40%",
-                    "Collaborated with the marketing team to create an intuitive user interface",
-                    "Led a team of four web engineers during my internship, managing project milestones and ensuring timely delivery",
-                    "Optimized website performance, reducing load time by 30%",
-                    "Assisted in creating bilingual content for the website, expanding the company's reach",
+                    "Developed and deployed a responsive company website using React and Next.js to improve the customer experience across devices.",
+                    "Implemented SEO and performance improvements that strengthened visibility and reduced load time.",
+                    "Collaborated with marketing stakeholders to shape a clearer user interface and product presentation.",
+                    "Led a team of four web engineers, managing project milestones and delivery quality.",
+                    "Assisted with bilingual content to expand accessibility for English and Chinese-speaking audiences.",
                   ]}
-                  link="#"
+                  link="https://wprimesport.com/"
                 />
                 <ExperienceItem
                   title="Silver Tech"
@@ -630,7 +743,7 @@ const Home = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <ProjectCard
                   title="Lockedin"
-                  description="Winner of Congressional App Challenge 24-25. An app featuring a AI chatbot and grade trend analyzer with bilingual support."
+                  description="Congressional App Challenge winning bilingual education app with an AI chatbot, grade trend analytics, and student-facing progress insights."
                   technologies={["React", "Python", "Llama API", "Data Visualization", "MongoDB", "Express.js", "Node.js"]}
                   link="https://github.com/myName833/congressapp24"
                   github="https://github.com/myName833/congressapp24"
@@ -651,7 +764,7 @@ const Home = () => {
                 />
                 <ProjectCard
                   title="EmployHub"
-                  description="Created an interactive platform to help school's guidance department so students can easily search job postings and employers can easily submit them."
+                  description="Created a platform for the school guidance department where students can search job postings and employers can submit opportunities."
                   technologies={["React.js", "Vite.js", "Flask", "Python", "SQL"]}
                   link="https://github.com/myName833/24-25-FBLA-COMP"
                   github="https://github.com/myName833/24-25-FBLA-COMP"
@@ -672,7 +785,7 @@ const Home = () => {
                 />
                 <ProjectCard
                   title="DBHS FBLA AI Study Website"
-                  description="Developed an AI powered website for a HS student in preparing FBLA Events"
+                  description="Developed an AI-powered study platform for FBLA competitors, including generated quizzes, personalized practice, and full-stack learning workflows for 1,000+ students."
                   technologies={["React.js", "Flask", "Python", "Tailwind CSS","SQL"]}
                   link="https://dbfbla.onrender.com/signin"
                   github="https://github.com/myName833/DBHS-FBLA-Website"
@@ -722,8 +835,8 @@ const Home = () => {
                 >
                   <h3 className="text-xl font-bold mb-2">Congressional App Challenge Winner 24-25</h3>
                   <p className="text-gray-300">
-                    Led the development of Lockedin, an innovative bilingual app featuring a chatbot and grade trend
-                    analyzer, recognized at the national level.
+                    Led Lockedin, a bilingual education app with an AI chatbot and grade trend analyzer, recognized for
+                    innovation in student support and educational technology.
                   </p>
                 </motion.div>
                 <motion.div
@@ -733,8 +846,19 @@ const Home = () => {
                 >
                   <h3 className="text-xl font-bold mb-2">Hackathon Organizer</h3>
                   <p className="text-gray-300">
-                    Successfully organized and led the largest hackathon in school history, with over 35 participants and
-                    utilized bilingual skills to engage a diverse group of participants.
+                    Founded and led DB Hackathon Club, organized the school's largest hackathon, and created workshops that
+                    helped students move from interest to working technical projects.
+                  </p>
+                </motion.div>
+                <motion.div
+                  className="bg-gray-700 rounded-lg p-6"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <h3 className="text-xl font-bold mb-2">AI Study Platform Impact</h3>
+                  <p className="text-gray-300">
+                    Built and deployed an FBLA preparation platform serving 1,000+ students with AI-generated practice,
+                    personalized study workflows, and full-stack application architecture.
                   </p>
                 </motion.div>
                 <motion.div
@@ -772,7 +896,8 @@ const Home = () => {
             <div className="container mx-auto px-6 text-center">
               <h2 className="text-3xl font-bold mb-8">Contact Me</h2>
               <p className="text-xl mb-8">
-                Feel free to reach out for collaborations or just a friendly hello. I'm fluent in both English and Chinese!
+                Looking for a builder who can ship full-stack AI tools, communicate clearly, and lead from idea to launch?
+                I would be glad to talk.
               </p>
               <div className="flex justify-center space-x-6">
                 <motion.a
