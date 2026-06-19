@@ -545,7 +545,7 @@ const Home = () => {
                 <SkillItem icon={<FaReact className="text-blue-500 text-4xl" />} title="React" level={75} />
                 <SkillItem icon={<FaNodeJs className="text-green-500 text-4xl" />} title="Node.js" level={70} />
                 <SkillItem icon={<FaPython className="text-blue-600 text-4xl" />} title="Python" level={85} />
-                <SkillItem icon={<FaBrain className="text-purple-400 text-4xl" />} title="AI APIs" level={80} />
+                <SkillItem icon={<FaBrain className="text-purple-400 text-4xl" />} title=" Fastapi" level={80} />
                 <SkillItem icon={<SiCplusplus className="text-blue-600 text-4xl" />} title="C++" level={80} />
                 <SkillItem icon={<SiNextdotjs className="text-white text-4xl" />} title="Next.js" level={75} />
                 <SkillItem icon={<SiTailwindcss className="text-blue-500 text-4xl" />} title="Tailwind CSS" level={85} />
